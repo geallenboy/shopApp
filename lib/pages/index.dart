@@ -1,6 +1,6 @@
-import 'package:shop/pages/home/index.dart';
+import 'package:shop/pages/home/view.dart';
 import 'package:shop/pages/mime/index.dart';
-import 'package:shop/pages/cart/index.dart';
+import 'package:shop/pages/cart/view.dart';
 import 'package:shop/pages/goods_cate/index.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +14,7 @@ class _PageIndexState extends State<PageIndex> {
   int _index_current = 0;
 
   final List _pageList = [
-    const HomeIndex(),
+    const HomeView(),
     const GoodsCateIndex(),
     const CartIndex(),
     const MimeIndex(),

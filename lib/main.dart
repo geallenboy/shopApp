@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:get/route_manager.dart';
-import 'package:get_storage/get_storage.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:shop/routers/app_pages.dart';
+import 'package:shop/common/langs/translation_service.dart';
+import 'package:shop/routers/routes.dart';
+import 'package:shop/store/store.dart';
+import 'package:shop/common/style/style.dart';
+import 'package:shop/utils/utils.dart';
+import 'package:shop/global.dart';
+import 'package:get/get.dart';
 
-void main() {
+Future<void> main() async {
+  await Global.init();
   runApp(const MyApp());
 }
 
@@ -14,23 +21,24 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      title: 'shop',
+      theme: AppTheme.light,
       debugShowCheckedModeBanner: false,
-      defaultTransition: Transition.fade,
-
-      ///国际化 自定义配置 目前配置了 英语和中文
-      localizationsDelegates: const [
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate
-      ],
-      supportedLocales: const [Locale("en", "US"), Locale("zh", "CN")],
-
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routers,
-      routingCallback: (routing) {
-        if (routing?.current != "/login" &&
-            routing?.current != "/login/webView") {}
-        if (routing?.current == "/home") {}
-      },
+      builder: EasyLoading.init(),
+      translations: TranslationService(),
+      navigatorObservers: [AppPages.observer],
+      localizationsDelegates: const [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: ConfigStore.to.languages,
+      locale: ConfigStore.to.locale,
+      fallbackLocale: const Locale('en', 'US'),
+      enableLog: true,
+      logWriterCallback: Logger.write,
     );
   }
 }

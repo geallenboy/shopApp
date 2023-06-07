@@ -4,20 +4,20 @@ import 'package:shop/pages/cart/view.dart';
 import 'package:shop/pages/goods_cate/index.dart';
 import 'package:flutter/material.dart';
 
-class PageIndex extends StatefulWidget {
-  const PageIndex({Key? key}) : super(key: key);
+class PageView extends StatefulWidget {
+  const PageView({Key? key}) : super(key: key);
 
-  State<PageIndex> createState() => _PageIndexState();
+  State<PageView> createState() => _PageIndexState();
 }
 
-class _PageIndexState extends State<PageIndex> {
+class _PageIndexState extends State<PageView> {
   int _index_current = 0;
 
   final List _pageList = [
     const HomeView(),
     const GoodsCateIndex(),
     const CartIndex(),
-    const MimeIndex(),
+    const MimeView(),
   ];
 
   @override

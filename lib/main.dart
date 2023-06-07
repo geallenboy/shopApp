@@ -21,24 +21,24 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'shop',
-      theme: AppTheme.light,
-      debugShowCheckedModeBanner: false,
-      initialRoute: AppPages.INITIAL,
-      getPages: AppPages.routers,
+      title: 'shop', //应用标题
+      theme: AppTheme.light, //应用主题，包括颜色、字体等
+      debugShowCheckedModeBanner: false, //是否显示debug标志
+      initialRoute: AppPages.INITIAL, //应用启动时的初始路由
+      getPages: AppPages.routers, //路由表，用来配置应用的路由信息
       builder: EasyLoading.init(),
-      translations: TranslationService(),
-      navigatorObservers: [AppPages.observer],
+      translations: TranslationService(), //配置显示国际化内容
+      locale: ConfigStore.to.locale, //默认展示本地语言
+      fallbackLocale: const Locale('en', 'US'), //语言选择无效时，备用语言
       localizationsDelegates: const [
+        //应用程序的本地化委托列表，用于提供应用程序的本地化字符串
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: ConfigStore.to.languages,
-      locale: ConfigStore.to.locale,
-      fallbackLocale: const Locale('en', 'US'),
-      enableLog: true,
-      logWriterCallback: Logger.write,
+      enableLog: true, //定义是否启用 GetX 的日志记录
+      logWriterCallback: Logger.write, //定义自定义的日志记录器回调函数
     );
   }
 }

@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:shop/apis/apis.dart';
-import 'package:shop/modules/modules.dart';
+import 'package:shop/entity/entity.dart';
 import 'package:shop/services/services.dart';
 import 'package:shop/common/values/values.dart';
 import 'package:get/get.dart';

@@ -1,4 +1,5 @@
-import '../modules/modules.dart';
+import 'package:shop/entity/entity.dart';
+
 import '../utils/utils.dart';
 
 class UserAPI {
@@ -9,7 +10,7 @@ class UserAPI {
       '/login',
       data: params?.toJson(),
     );
-    return UserLoginResponseEntity.fromJson(response);
+    return UserLoginResponseEntity.fromJson(response.data);
   }
 }
 

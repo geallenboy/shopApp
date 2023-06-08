@@ -7,7 +7,14 @@ class HomeController extends GetxController {
   var data = [].obs;
   var banner = [].obs;
   var menus = [].obs;
-  final name = 'title'.obs;
+  var name = 'title'.obs;
+  var tabIndex = 0;
+
+  void changeTabIndex(int index) {
+    print(index);
+    tabIndex = index;
+    update();
+  }
 
   void asyncLoadHomeDate() async {
     var res = await HomeAPI.index();

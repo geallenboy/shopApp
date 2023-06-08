@@ -1,6 +1,16 @@
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
-class CartController extends GetxController {
+class IndexController extends GetxController {
+  var currentIndex = 0.obs;
+  static int initialPage = 0;
+  final PageController controller = PageController(initialPage: initialPage);
+  late List<Widget> pages;
+  void changeTabIndex(index) {
+    currentIndex.value = index;
+    update();
+  }
+
   /// 初始
   @override
   void onInit() {
@@ -16,8 +26,6 @@ class CartController extends GetxController {
   }
 
   /// 关闭页面
-  /// 可以缓存数据，关闭各种控制器
-  /// dispose 之前
   @override
   void onClose() {
     super.onClose();

@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-class MimeController extends GetxController {
+class MineController extends GetxController {
   final obj = ''.obs;
 
   @override

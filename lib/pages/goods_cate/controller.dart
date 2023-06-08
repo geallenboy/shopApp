@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-class CartController extends GetxController {
+class GoodsCateController extends GetxController {
   /// 初始
   @override
   void onInit() {

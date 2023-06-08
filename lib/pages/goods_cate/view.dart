@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:shop/pages/cart/index.dart';
+import 'index.dart';
 
-class CartView extends GetWidget<CartController> {
-  const CartView({super.key});
+class GoodsCateView extends GetView<GoodsCateController> {
+  const GoodsCateView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
       body: Center(
-        child: Text('购物车'),
+        child: Text('商品分类'),
       ),
     );
   }

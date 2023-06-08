@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import 'index.dart';
-import 'widgets/widgets.dart';
 
 class HomeView extends GetWidget<HomeController> {
   const HomeView({super.key});
@@ -10,8 +8,9 @@ class HomeView extends GetWidget<HomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Obx(() => Text('${controller.name}${controller.banner}====>')),
-      ),
+          child: Obx(() => Text('${controller.name}${controller.banner}====>'))
+          // Obx(() => Text('${controller.name}${controller.banner}====>')),
+          ),
     );
   }
 }

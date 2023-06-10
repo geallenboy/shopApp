@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:shop/routers/app_pages.dart';
 import 'package:shop/common/langs/translation_service.dart';
 import 'package:shop/routers/routes.dart';
@@ -20,25 +22,39 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      title: 'shop', //应用标题
-      theme: AppTheme.light, //应用主题，包括颜色、字体等
-      debugShowCheckedModeBanner: false, //是否显示debug标志
-      initialRoute: AppPages.INITIAL, //应用启动时的初始路由
-      getPages: AppPages.routers, //路由表，用来配置应用的路由信息
-      builder: EasyLoading.init(),
-      translations: TranslationService(), //配置显示国际化内容
-      locale: ConfigStore.to.locale, //默认展示本地语言
-      fallbackLocale: const Locale('en', 'US'), //语言选择无效时，备用语言
-      localizationsDelegates: const [
-        //应用程序的本地化委托列表，用于提供应用程序的本地化字符串
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: ConfigStore.to.languages,
-      enableLog: true, //定义是否启用 GetX 的日志记录
-      logWriterCallback: Logger.write, //定义自定义的日志记录器回调函数
-    );
+    ///屏幕适配方案，用于调整屏幕和字体大小的flutter插件，让你的UI在不同尺寸的屏幕上都能显示合理的布局!
+    return ScreenUtilInit(
+        designSize: const Size(375, 812), //设计稿中设备的尺寸
+        minTextAdapt: true, //是否根据宽度/高度中的最小值适配文字
+        splitScreenMode: true, //支持分屏尺寸
+        builder: (context, child) {
+          return RefreshConfiguration(
+            headerBuilder: () => const ClassicHeader(),
+            footerBuilder: () => const ClassicFooter(),
+            hideFooterWhenNotFull: true,
+            headerTriggerDistance: 80,
+            maxOverScrollExtent: 100,
+            footerTriggerDistance: 150,
+            child: GetMaterialApp(
+              title: 'shop',
+              theme: AppTheme.light,
+              debugShowCheckedModeBanner: false,
+              initialRoute: AppPages.INITIAL,
+              getPages: AppPages.routers,
+              builder: EasyLoading.init(),
+              translations: TranslationService(),
+              localizationsDelegates: [
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+              ],
+              supportedLocales: ConfigStore.to.languages,
+              locale: ConfigStore.to.locale,
+              fallbackLocale: const Locale('en', 'US'),
+              enableLog: true,
+              logWriterCallback: Logger.write,
+            ),
+          );
+        });
   }
 }

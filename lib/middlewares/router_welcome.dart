@@ -17,9 +17,9 @@ class RouteWelcomeMiddleware extends GetMiddleware {
     if (ConfigStore.to.isFirstOpen == true) {
       return null;
     } else if (UserStore.to.isLogin == true) {
-      return RouteSettings(name: AppRoutes.Home);
+      return const RouteSettings(name: AppRoutes.index);
     } else {
-      return RouteSettings(name: AppRoutes.Login);
+      return const RouteSettings(name: AppRoutes.login);
     }
   }
 }

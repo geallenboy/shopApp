@@ -1,4 +1,4 @@
-library template;
+library index;
 
 export 'controller.dart';
 export 'bindings.dart';

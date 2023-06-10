@@ -10,7 +10,7 @@ class WelcomeController extends GetxController {
   // 跳转 注册界面
   handleNavSignIn() async {
     await ConfigStore.to.saveAlreadyOpen();
-    Get.offAndToNamed(AppRoutes.Login);
+    Get.offAndToNamed(AppRoutes.login);
   }
 
   @override

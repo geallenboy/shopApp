@@ -1,4 +1,4 @@
-library template;
+library goods_cate;
 
 export 'controller.dart';
 export 'bindings.dart';

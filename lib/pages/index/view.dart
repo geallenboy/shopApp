@@ -6,7 +6,6 @@ import 'package:shop/pages/mine/index.dart';
 import 'package:shop/pages/cart/index.dart';
 import 'package:shop/pages/goods_cate/index.dart';
 import 'package:flutter/material.dart';
-import 'package:shop/utils/screenutil.dart';
 
 import 'index.dart';
 
@@ -15,34 +14,36 @@ class IndexView extends GetView<IndexController> {
 
   @override
   Widget build(BuildContext context) {
-    controller.pages = [HomeView(), GoodsCateView(), CartView(), MimeView()];
+    controller.pages = [
+      const HomeView(),
+      const GoodsCateView(),
+      const CartView(),
+      const MimeView()
+    ];
     return Scaffold(
       body: PageView(
         controller: controller.controller,
-        children: controller.pages,
         onPageChanged: (index) => _onJumpTo(index),
-        physics: NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
+        children: controller.pages,
       ),
-      bottomNavigationBar: Container(
-        child: Obx(() => BottomNavigationBar(
-              backgroundColor: Colors.white,
-              unselectedItemColor: Colors.black,
-              selectedItemColor: Colors.redAccent,
-              onTap: (index) => _onJumpTo(index),
-              currentIndex: controller.currentIndex.value,
-              showSelectedLabels: false,
-              showUnselectedLabels: false,
-              type: BottomNavigationBarType.fixed,
-              items: const [
-                BottomNavigationBarItem(icon: Icon(Icons.home), label: "首页"),
-                BottomNavigationBarItem(
-                    icon: Icon(Icons.grid_view), label: "分类"),
-                BottomNavigationBarItem(
-                    icon: Icon(Icons.card_travel_sharp), label: "购物车"),
-                BottomNavigationBarItem(icon: Icon(Icons.person), label: "我的")
-              ],
-            )),
-      ),
+      bottomNavigationBar: Obx(() => BottomNavigationBar(
+            backgroundColor: Colors.white,
+            unselectedItemColor: Colors.black,
+            selectedItemColor: Colors.redAccent,
+            onTap: (index) => _onJumpTo(index),
+            currentIndex: controller.currentIndex.value,
+            showSelectedLabels: false,
+            showUnselectedLabels: false,
+            type: BottomNavigationBarType.fixed,
+            items: const [
+              BottomNavigationBarItem(icon: Icon(Icons.home), label: "首页"),
+              BottomNavigationBarItem(icon: Icon(Icons.grid_view), label: "分类"),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.card_travel_sharp), label: "购物车"),
+              BottomNavigationBarItem(icon: Icon(Icons.person), label: "我的")
+            ],
+          )),
     );
   }
 

@@ -58,10 +58,7 @@ class WelcomeView extends GetView<WelcomeController> {
           Container(
             width: 80.w,
             height: 80.w,
-            child: Image.asset(
-              "assets/images/$imageName.png",
-              fit: BoxFit.none,
-            ),
+            child: Text("left"),
           ),
           Spacer(),
           Container(

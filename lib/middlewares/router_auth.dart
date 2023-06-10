@@ -16,13 +16,13 @@ class RouteAuthMiddleware extends GetMiddleware {
   RouteSettings? redirect(String? route) {
     print('1111${UserStore.to.isLogin}');
     if (UserStore.to.isLogin ||
-        route == AppRoutes.Login ||
-        route == AppRoutes.Home) {
+        route == AppRoutes.login ||
+        route == AppRoutes.index) {
       return null;
     } else {
       Future.delayed(
           Duration(seconds: 1), () => Get.snackbar("提示", "登录过期,请重新登录"));
-      return RouteSettings(name: AppRoutes.Login);
+      return RouteSettings(name: AppRoutes.login);
     }
   }
 }
